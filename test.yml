@@ -1,0 +1,13 @@
+---
+- name: install job
+  hosts: {{target}}
+  remote_user: root
+
+  tasks:
+    - name: create file
+      file:
+        path=/root/test.txt
+        state=touch
+
+    - name: copy content
+      shell: echo "{{coredumpfile}}" > /root/test.txt
