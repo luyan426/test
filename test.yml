@@ -1,6 +1,6 @@
 ---
 - name: install job
-  hosts: {{target}}
+  hosts: "{{target}}"
   remote_user: root
 
   tasks:
