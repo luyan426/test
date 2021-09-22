@@ -6,8 +6,18 @@
   tasks:
     - name: create file
       file:
-        path=/root/test.txt
+        path=/root/{{coredumpfile}}
         state=touch
+      when: zbx_trigger == "fsac-apt-coredump"
 
     - name: copy content
-      shell: echo "{{coredumpfile}}" > /root/test.txt
+      shell: echo "{{target}}" >> /root/{{coredumpfile}}
+      when: zbx_trigger == "fsac-apt-coredump"
+      
+    - name: copy content2
+      shell: echo "{{zbx_trigger}}" >> /root/{{coredumpfile}}
+      when: zbx_trigger == "fsac-apt-coredump"
+      
+    - name: copy content3
+      shell: echo "{{coredumpfile}}" >> /root/{{coredumpfile}}
+      when: zbx_trigger == "fsac-apt-coredump"
